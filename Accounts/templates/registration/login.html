@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block main_content %}
+
+<form action="" method="post">
+ {% csrf_token %}
+
+ {{form.label_tag}}
+ {{form}} <br>
+ <input type="submit" value="Login Now">
+ 
+ 
+</form>
+
+<div class="social">
+<ul> 
+<li class="facebook">
+    <a href="{% url "social_login_hai:begin" "facebook" %}">Login in with Facebook</a>
+ </li>
+<li class="google">
+        <a href="{% url "social_login_hai:begin" "google-oauth2" %}">Sign in with Google</a>
+      </li>
+
+
+</ul>
+</div>
+
+<h2><a href="{% url 'password_reset' %}">Forget Your Password?</a>
+</h2>
+
+{% endblock main_content %}

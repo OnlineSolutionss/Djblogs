@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+
+{% block main_content %}
+
+
+    <div class="global-container">
+        <div class="card login-form">
+        
+           {% if request.user.is_authenticated %}
+
+            <div class="card-body">
+            <h3 class="card-title text-center">Welcome, {{request.user.username}}</h3>
+          
+            </div>
+
+{% else %}
+            <div class="card-body">
+            <h3 class="card-title text-center">Welcome, Guest </h3>
+          
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    
+
+    {% endblock %}

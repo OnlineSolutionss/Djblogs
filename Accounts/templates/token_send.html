@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+
+{% block main_content %}
+
+
+    <style>
+    .card-body {
+    flex: 9 3 auto;
+    padding: 5rem 1rem;
+}
+
+.global-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    margin-top: 107px;
+}
+    </style>
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">We have sent an email to you </h3>
+            <div class="card-text text-center">
+                Please check your mail
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    {% endblock %}

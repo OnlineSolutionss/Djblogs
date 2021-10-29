@@ -1,0 +1,44 @@
+    {% extends "blogs/base2.html" %}
+
+    {% block title %}
+    Welcome to Blog
+    {% endblock %}
+
+    {% block content %}
+
+    <div class="container">
+    <div class="row">
+    <div class="col-4">
+    
+  {% for post in similar_posts %}
+    
+              <div class="entry-img">
+              <a href="{% url 'post_single' post.slug %}">
+                <img src="{{post.image.url}} " alt="" class="img-fluid">
+              </a>
+              </div>
+
+              <h2 class="entry-title">
+                <a href="{% url 'post_single' post.slug %}">{{post.title}} </a>
+              </h2>
+
+              <div class="entry-content">
+                <p>
+                 {{post.excerpt|truncatechars:90}}
+                </p>
+                <div class="read-more">
+                  <a href="{% url 'post_single' post.slug %}">Read More</a>
+                </div>
+              </div>
+
+    
+
+   {% endfor %}
+    </div>
+
+    
+    </div>
+    </div>
+
+
+    {% endblock content %}

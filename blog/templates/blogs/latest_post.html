@@ -1,0 +1,11 @@
+
+ <div class="sidebar-item recent-posts">
+                {% for post in latest_post %}
+                <div class="post-item clearfix">
+                  <img src="{{post.image.url}}" alt="">
+                  <h4><a href="{% url 'post_single' post.slug %}">{{post.title}} </a></h4>
+                  <time datetime="2020-01-01">{{post.publish}}</time>
+                </div>
+                {% endfor %}
+
+              </div><!-- End sidebar recent posts-->

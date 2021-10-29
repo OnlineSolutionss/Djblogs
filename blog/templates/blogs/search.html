@@ -1,0 +1,90 @@
+    {% extends "blogs/base2.html" %}
+    {% load blog_tags %}
+
+    {% block title %}
+     Home
+    {% endblock %}
+
+    {% block content %}
+
+  <div class="col-lg-8">
+  {% if query %}
+  <h3>Post Searched by:{{query}} </h3>
+  
+  {% endif %}
+   
+   {% if result %}
+   
+
+    {% for post in result %}
+    <article class="entry">
+                    <div class="entry-img">
+                    <a href="{% url 'post_single' post.slug %}">
+                      <img src="{{post.image.url}} " alt="" class="img-fluid">
+                    </a>
+                    </div>
+
+                    <h2 class="entry-title">
+                      <a href="{% url 'post_single' post.slug %}">{{post.title}} </a>
+                    </h2>
+
+                    <div class="entry-meta">
+                      <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">{{post.author}}</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href=""><time datetime="2020-01-01">{{post.publish}}</time></a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-file-bar-graph-fill"></i></i> <a href="{% url 'by_category' post.category %}">Category:  {{post.category}} </a></li>
+
+                        <li class="d-flex align-items-center"></i><i class="bi bi-check-all"></i>Tags: 
+                        {% for tag in post.tags.all %}
+                        <a href="{% url 'by_tags' tag %}"> {{tag.name}} </a>
+                        {% if not forloop.last %},
+
+                        {% endif %}</li>
+                      
+      {% endfor %}
+                      
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                 {{post.excerpt}}
+                </p>
+                <div class="read-more">
+                  <a href="">Read More</a>
+                </div>
+              </div>
+
+    </article><!-- End blog entry -->
+        {% endfor %}
+   
+   {% else %}
+   <h2>No Result Found with: {{query}}</h2>
+        
+   {% endif %}
+
+{% if form %}
+<form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Search Now" id="">
+        </form>
+
+{% else %}
+
+<h2>No Search Form Avalable ..</h2>
+{% endif %}
+   
+
+
+       
+
+       <div class="blog-pagination">
+              <ul class="justify-content-center">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+              </ul>
+        </div>
+
+    {% endblock %}
